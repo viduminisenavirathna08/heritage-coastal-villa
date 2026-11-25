@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Short Project Report - Heritage Coastal Villa Booking System</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 16mm 18mm 16mm;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        body {
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: #2c3e50;
+            background: #ffffff;
+            line-height: 1.45;
+            font-size: 11pt;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            page-break-after: always;
+            position: relative;
+            min-height: 255mm;
+            padding-bottom: 12mm;
+        }
+        .page:last-child {
+            page-break-after: avoid;
+        }
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.5pt;
+            color: #888888;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 4px;
+        }
+        h1, h2, h3, h4 {
+            color: #111a24;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 20pt;
+            color: #1a252f;
+            border-bottom: 2.5px solid #c5a869;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        h2 {
+            font-size: 13.5pt;
+            color: #1b2a47;
+            border-left: 4px solid #c5a869;
+            padding-left: 8px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+        h3 {
+            font-size: 11.5pt;
+            color: #2c3e50;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin: 0 0 8px 0;
+            text-align: justify;
+        }
+        ul, ol {
+            margin: 0 0 10px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 3px;
+        }
+        .header-meta {
+            background: #faf8f5;
+            border: 1px solid #ede6dc;
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            font-size: 9.5pt;
+        }
+        .badge {
+            background: #eef2ec;
+            color: #3b5249;
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 8.5pt;
+        }
+        .img-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+        .img-card {
+            border: 1px solid #dcdde1;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .img-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        .img-card .caption {
+            padding: 5px 8px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #333;
+            background: #fafafa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin: 8px 0 12px 0;
+        }
+        th, td {
+            border: 1px solid #dcdde1;
+            padding: 6px 8px;
+            text-align: left;
+        }
+        th {
+            background: #1a252f;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .er-diagram-box {
+            background: #fbfbfd;
+            border: 1.5px solid #d1d8e0;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 8.5pt;
+            line-height: 1.35;
+            color: #2f3640;
+        }
+        .highlight-box {
+            background: #fffdf9;
+            border-left: 3.5px solid #c5a869;
+            border-right: 1px solid #eee;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-size: 9.5pt;
+        }
+        @media screen {
+            body {
+                background: #eef1f5;
+                padding: 20px;
+            }
+            .page {
+                background: #ffffff;
+                max-width: 210mm;
+                min-height: 297mm;
+                margin: 0 auto 20px auto;
+                padding: 20mm;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            .print-btn {
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                background: #c5a869;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 700;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+                z-index: 9999;
+            }
+        }
+        @media print {
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Save as PDF / Print</button>
+
+<!-- =================================================================== -->
+<!-- PAGE 1: TITLE, INTRODUCTION & OBJECTIVES                            -->
+<!-- =================================================================== -->
+<div class="page">
+    <div style="text-align: center; margin-bottom: 14px;">
+        <span style="font-size: 9.5pt; letter-spacing: 3px; text-transform: uppercase; color: #c5a869; font-weight: 700;">Academic Project Documentation</span>
+        <h1 style="margin: 4px 0 6px 0; font-size: 19pt;">Heritage Coastal Villa - Resort Booking Web Application</h1>
+        <div style="font-size: 10.5pt; color: #57606f; font-weight: 500;">Comprehensive Short Project Report (Maximum 5 Pages)</div>
+    </div>
+
+    <div class="header-meta">
+        <div>
+            <strong>Project Name:</strong> Heritage Coastal Villa Web Application<br>
+            <strong>Domain:</strong> Luxury Hospitality & Experiential E-Tourism Booking System<br>
+            <strong>Target Location:</strong> Mirissa / Ahangama, Southern Province, Sri Lanka
+        </div>
+        <div style="text-align: right;">
+            <strong>Tech Stack:</strong> PHP 8.x, MySQL, JavaScript, HTML5/CSS3<br>
+            <strong>Architecture:</strong> MVC Modular Pattern (Vanilla PHP + PDO)
+        </div>
+    </div>
+
+    <h2>1. Introduction & Background</h2>
+    <p>
+        The global tourism landscape in Sri Lanka has shifted toward luxury, authentic experiential retreats where travelers seek seamless digital convenience combined with traditional cultural hospitality. <strong>Heritage Coastal Villa</strong> is an artisan sanctuary nestled along the Mirissa coastline that blends native Ceylon teak architecture with modern coastal living.
+    </p>
+    <p>
+        Prior to this system, small-to-medium luxury villas managed reservations and guest inquiries through disjointed phone calls, manual email exchanges, or high-commission Third-Party Online Travel Agencies (OTAs). This resulted in high booking overhead, communication delays, missed revenue on experiential add-ons, and vulnerability to double-booking errors during peak coastal tourist seasons.
+    </p>
+
+    <h2>2. Project Objectives</h2>
+    <p>
+        The objective of this web application was to engineer a self-contained, high-performance, and visually captivating direct-booking platform. Key objectives include:
+    </p>
+    <ul>
+        <li><strong>Direct Guest Empowerment:</strong> Provide prospective travelers with a real-time reservation workflow, dual currency conversion (USD / LKR), automated long-stay incentives (5% & 10% discounts), and transparent taxation (8% VAT).</li>
+        <li><strong>Experiential Tourism Integration:</strong> Enable guests to bundle verified local experiences (Ayurvedic wellness therapies, marine dolphin/whale safaris, in-villa floating breakfasts, cultural cooking classes) directly with room reservations.</li>
+        <li><strong>Complimentary Amenities Transparency:</strong> Highlight zero-cost guest privileges (unlimited infinity pool access, in-suite kitchenette, front beach access, 100Mbps WiFi) both dynamically and in administrative controls.</li>
+        <li><strong>Policy Compliance & Orderliness:</strong> Enforce mandatory agreement to Villa Policies & House Rules (quiet hours, no outside food, pool safety, deposit rules) prior to booking confirmation.</li>
+        <li><strong>Centralized Back-Office Management:</strong> Provide villa administrators with a secured portal to monitor revenue, review pending booking requests, manage suite rates, and maintain the experience catalog.</li>
+    </ul>
+
+    <h2>3. System Scope & Stakeholders</h2>
+    <table>
+        <tr>
+            <th style="width: 28%;">Stakeholder</th>
+            <th style="width: 72%;">Capabilities & Scope</th>
+        </tr>
+        <tr>
+            <td><strong>Independent Traveler / Guest</strong></td>
+            <td>Explore suites, filter experiences by category, simulate stays with instant price calculation, customize dietary requests, agree to policies, book directly, and review personal booking history.</td>
+        </tr>
+        <tr>
+            <td><strong>Villa General Manager / Admin</strong></td>
+            <td>Access administrative console, monitor booking statistics, approve/cancel reservations, manage suite capacities and nightly rates, create and edit paid experiences, and configure free facilities.</td>
+        </tr>
+    </table>
+
+    <div class="page-footer">
+        <span>Heritage Coastal Villa Booking System &bull; Project Report</span>
+        <span>Page 1 of 5</span>
+    </div>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- PAGE 2: SCREENSHOTS OF THE MAIN WEB PAGES                          -->
+<!-- =================================================================== -->
+<div class="page">
+    <h2>4. Screenshots of Main Web Pages</h2>
+    <p>
+        The graphical interface follows a bespoke "Relaxed Tropical Luxury" aesthetic characterized by warm sand tones, Cinzel headers, and mobile-friendly responsive components.
+    </p>
+
+    <div class="img-grid-2">
+        <div class="img-card">
+            <img src="docs/images/home_hero.jpg" alt="Home Hero Screen">
+            <div class="caption">Figure 4.1: Homepage Hero Showcase with Brand Logo & Quick Actions</div>
+        </div>
+        <div class="img-card">
+            <img src="docs/images/suites.jpg" alt="Suites Showcase">
+            <div class="caption">Figure 4.2: Accommodations with Free Pool, Kitchen & Beach View Badges</div>
+        </div>
+    </div>
+
+    <div class="img-grid-2">
+        <div class="img-card">
+            <img src="docs/images/booking_calculator.jpg" alt="Booking Calculator">
+            <div class="caption">Figure 4.3: Real-Time Price Calculator, Long-stay Discounts & Policy Gate</div>
+        </div>
+        <div class="img-card">
+            <img src="docs/images/guest_portal.jpg" alt="Guest Portal">
+            <div class="caption">Figure 4.4: Guest Itinerary Dashboard with Dual-Currency Breakdown</div>
+        </div>
+    </div>
+
+    <div class="img-grid-2">
+        <div class="img-card">
+            <img src="docs/images/admin_dashboard.png" alt="Admin Management Console">
+            <div class="caption">Figure 4.5: Administration Console Metrics (Bookings, Revenue & Inventory)</div>
+        </div>
+        <div class="img-card">
+            <img src="docs/images/admin_reservations.jpg" alt="Admin Reservations Grid">
+            <div class="caption">Figure 4.6: Reservation Management Grid with Add-on Details & Actions</div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span>Heritage Coastal Villa Booking System &bull; Project Report</span>
+        <span>Page 2 of 5</span>
+    </div>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- PAGE 3: DATABASE ER DIAGRAM & ARCHITECTURE                         -->
+<!-- =================================================================== -->
+<div class="page">
+    <h2>5. Database Architecture & ER Diagram</h2>
+    <p>
+        The relational database <code>heritage_villa_db</code> is constructed in MySQL InnoDB engine with enforced foreign key integrity, cascading updates, and indexing on temporal fields to support high-throughput concurrency.
+    </p>
+
+    <h3>5.1 Entity Relationship (ER) Representation</h3>
+    <div class="er-diagram-box">
++---------------------+           1:N           +---------------------+
+|        USERS        |------------------------<|      BOOKINGS       |
++---------------------+                         +---------------------+
+| PK  id              |                         | PK  id              |
+|     full_name       |                         | FK  user_id         |
+|     email (UNIQUE)  |                         | FK  room_id         |
+|     phone           |                         |     check_in (DATE) |
+|     password (BCRYPT|                         |     check_out(DATE) |
+|     role (guest/adm)|                         |     num_guests      |
+|     created_at      |                         |     room_total      |
++---------------------+                         |     discount_amount |
+                                                |     services_total  |
++---------------------+           1:N           |     grand_total     |
+|        ROOMS        |------------------------<|     booking_status  |
++---------------------+                         |     special_requests|
+| PK  id              |                         |     created_at      |
+|     room_name       |                         +---------------------+
+|     room_type       |                                    | 1
+|     price_per_night |                                    |
+|     max_guests      |                                    | 1:N
+|     description     |                                    v
+|     image_url       |                         +---------------------+
+|     status (avail/m)|                         |  BOOKING_SERVICES   |
+|     created_at      |                         +---------------------+
++---------------------+                         | PK  id              |
+                                                | FK  booking_id (CAS)|
++---------------------+           1:N           | FK  service_id (RES)|
+|      SERVICES       |------------------------<|     service_price   |
++---------------------+                         |     created_at      |
+| PK  id              |                         +---------------------+
+|     service_name    |
+|     category (ENUM) | [free_facility, in_house, wellness, marine, cultural, travel]
+|     price (DECIMAL) |
+|     pricing_unit    |
+|     description     |
+|     image_url       |
+|     icon (fa-*)     |
+|     status (active) |
++---------------------+
+    </div>
+
+    <h3>5.2 Data Dictionary & Integrity Rules</h3>
+    <table>
+        <tr>
+            <th style="width: 22%;">Table</th>
+            <th style="width: 25%;">Primary / Foreign Keys</th>
+            <th style="width: 53%;">Description & Integrity Constraints</th>
+        </tr>
+        <tr>
+            <td><code>users</code></td>
+            <td><code>PK: id</code></td>
+            <td>Stores administrative staff and registered guests. Enforces unique email credentials with bcrypt salted hashing.</td>
+        </tr>
+        <tr>
+            <td><code>rooms</code></td>
+            <td><code>PK: id</code></td>
+            <td>Maintains villa accommodations inventory, nightly USD base rates, maximum occupants, and localized amenities.</td>
+        </tr>
+        <tr>
+            <td><code>services</code></td>
+            <td><code>PK: id</code></td>
+            <td>Holds paid experiential add-ons and complimentary $0.00 facilities across 6 designated categories.</td>
+        </tr>
+        <tr>
+            <td><code>bookings</code></td>
+            <td><code>PK: id</code><br><code>FK: user_id, room_id</code></td>
+            <td>Maintains reservation lifecycle. Indexed on <code>(room_id, check_in, check_out)</code> for sub-second overlap prevention.</td>
+        </tr>
+        <tr>
+            <td><code>booking_services</code></td>
+            <td><code>PK: id</code><br><code>FK: booking_id, service_id</code></td>
+            <td>Many-to-Many junction table capturing locked unit price at time of order execution (independent of future service rate edits).</td>
+        </tr>
+    </table>
+
+    <div class="page-footer">
+        <span>Heritage Coastal Villa Booking System &bull; Project Report</span>
+        <span>Page 3 of 5</span>
+    </div>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- PAGE 4: EXPLANATION OF CORE FUNCTIONS                              -->
+<!-- =================================================================== -->
+<div class="page">
+    <h2>6. Explanation of Core Functions</h2>
+
+    <h3>6.1 Real-Time Stay & Currency Calculation (`book.php`)</h3>
+    <p>
+        The reservation form features an event-driven JavaScript computational engine paired with server-side validation in PHP (`process_booking.php`). When check-in/out dates or add-ons are toggled:
+    </p>
+    <ul>
+        <li><strong>Duration Calculus:</strong> Computes $Nights = \text{Date}_{out} - \text{Date}_{in}$. Dates prior to current day or check-out $\le$ check-in are rejected.</li>
+        <li><strong>Tiered Long-Stay Discount Engine:</strong>
+            $$\text{Discount} = \begin{cases} 0.10 \times \text{Room Subtotal}, & \text{if } Nights \ge 3 \\ 0.05 \times \text{Room Subtotal}, & \text{if } Nights = 2 \\ 0, & \text{otherwise} \end{cases}$$
+        </li>
+        <li><strong>Dual-Currency Switcher:</strong> Converts all calculations using a defined constant $1\text{ USD} = 320\text{ LKR}$. Guests can switch displays between primary USD and converted LKR seamlessly.</li>
+        <li><strong>Mandatory 8% VAT:</strong> Government tax is computed as $\text{VAT} = 0.08 \times (\text{Net Room Total} + \text{Addons Total})$.</li>
+    </ul>
+
+    <h3>6.2 Strict Double-Booking Concurrency Control (`process_booking.php`)</h3>
+    <p>
+        To prevent race conditions where two simultaneous visitors attempt to reserve the same suite on overlapping dates, transactions are executed with pessimistic row-locking:
+    </p>
+    <div class="highlight-box">
+        <code>SELECT * FROM rooms WHERE id = :id AND status = 'available' FOR UPDATE;</code><br>
+        <code>SELECT id FROM bookings WHERE room_id = :room_id AND booking_status IN ('pending', 'confirmed') AND NOT (check_out <= :new_in OR check_in >= :new_out) LIMIT 1;</code>
+    </div>
+    <p>
+        If an overlap is detected, the transaction is rolled back with an immediate descriptive notification, preserving data consistency.
+    </p>
+
+    <h3>6.3 Mandatory House Rules & Policies Gate</h3>
+    <p>
+        Before order confirmation, guests are presented with the compiled <em>Villa Policies & House Rules</em> (2:00 PM Check-In, 11:00 AM Check-Out, No Outside Food/Beverages, Strictly No Pets, Indoor Smoking Prohibition, and Pool Safety Disclosures). A mandatory checkbox is validated both client-side and server-side to guarantee legal and operational consensus.
+    </p>
+
+    <h3>6.4 Dynamic Free Facilities & Experience CRUD</h3>
+    <p>
+        Administrators can configure both paid experiences and complimentary facilities ($0.00) through <code>admin/services.php</code>. An intelligent image resolver links localized photo assets from <code>assets/images/</code> to ensure zero broken image states.
+    </p>
+
+    <div class="page-footer">
+        <span>Heritage Coastal Villa Booking System &bull; Project Report</span>
+        <span>Page 4 of 5</span>
+    </div>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- PAGE 5: TESTING, CHALLENGES & LESSONS LEARNT                       -->
+<!-- =================================================================== -->
+<div class="page">
+    <h2>7. Summary of System Testing</h2>
+    <p>
+        Rigorous testing was conducted across unit, functional, security, and responsive compatibility vectors to verify production stability:
+    </p>
+    <table>
+        <tr>
+            <th style="width: 25%;">Test Area</th>
+            <th style="width: 38%;">Test Scenario</th>
+            <th style="width: 25%;">Expected Result</th>
+            <th style="width: 12%;">Status</th>
+        </tr>
+        <tr>
+            <td><strong>Date Validation</strong></td>
+            <td>Booking past dates or check-out on same day as check-in.</td>
+            <td>Blocked client-side and rejected with error in PHP.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+        <tr>
+            <td><strong>Overlap Check</strong></td>
+            <td>Two bookings for same suite spanning overlapping days.</td>
+            <td>First succeeds; second receives conflict notice.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+        <tr>
+            <td><strong>Discount Engine</strong></td>
+            <td>Stays of 1 night, 2 nights, and 4 nights.</td>
+            <td>0%, 5%, and 10% discounts calculated accurately with VAT.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+        <tr>
+            <td><strong>Policy Enforcement</strong></td>
+            <td>Submitting booking without checking policies agreement.</td>
+            <td>Form submission blocked; focus shifted to checkbox.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+        <tr>
+            <td><strong>Security (SQLi/CSRF)</strong></td>
+            <td>Inputting malicious SQL tokens and submitting without CSRF token.</td>
+            <td>PDO parameterized statements neutralize SQLi; CSRF fails safely.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+        <tr>
+            <td><strong>Cross-Browser UI</strong></td>
+            <td>Viewing on Chrome, Firefox, Safari, Edge, and Android Mobile.</td>
+            <td>Consistent layout, functional modals, and responsive grids.</td>
+            <td><span class="badge">PASSED</span></td>
+        </tr>
+    </table>
+
+    <h2>8. Challenges Faced & Lessons Learnt</h2>
+    <h3>8.1 Challenges Encountered</h3>
+    <ul>
+        <li><strong>Database Schema Constraints with New Categories:</strong> Adding the <code>free_facility</code> category initially encountered strict MySQL ENUM constraints, causing blank category entries until an automated schema migration script was executed.</li>
+        <li><strong>Sub-Pixel Card Alignment:</strong> Dynamic multi-line titles in experience cards caused uneven button heights on varying viewport sizes. Resolved by enforcing CSS Flexbox column alignment with minimum header heights and <code>margin-top: auto</code> footers.</li>
+        <li><strong>Dual-Currency Real-Time Sync:</strong> Managing price states across JavaScript DOM calculations while maintaining exact financial accuracy with PHP server calculations required uniform rounding rules and centralized exchange constants.</li>
+    </ul>
+
+    <h3>8.2 Lessons Learnt</h3>
+    <ul>
+        <li><strong>Defensive Database Programming:</strong> Relying on database transactions (`FOR UPDATE`) is essential for hospitality platforms to prevent race conditions that simple frontend checks cannot stop.</li>
+        <li><strong>User-Centric Policy UX:</strong> Presenting house rules within a tidy, scrollable modal/box during checkout dramatically improves compliance without disrupting user booking sentiment.</li>
+        <li><strong>Modular Architecture:</strong> Decoupling database configuration, templates (header/footer), and computational logic allows effortless expansion of additional villa properties and service packages.</li>
+    </ul>
+
+    <div style="margin-top: 18px; padding: 12px; background: #faf8f5; border: 1px solid #c5a869; border-radius: 4px; text-align: center; font-size: 9pt;">
+        <strong>Project Status: Complete & Verified &bull; Heritage Coastal Villa Resort Management System</strong><br>
+        Developed for Academic Evaluation & Industry-Standard Deployment &bull; Mirissa, Sri Lanka &bull; 2026
+    </div>
+
+    <div class="page-footer">
+        <span>Heritage Coastal Villa Booking System &bull; Project Report</span>
+        <span>Page 5 of 5</span>
+    </div>
+</div>
+
+</body>
+</html>
